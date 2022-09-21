@@ -46,7 +46,6 @@ _sumit: http://user- ........._
 
 - Sau khi đã lọc hết các JS có thể tham gia thì còn lại là câu lệnh gọi tới tải file getpdf.php chính vì thế mà tôi submit kết quả và thành công :v tuy hên xui nhưng có vẻ chúng ta cần phải làm rõ điều này...
 
-
 _sumit: http://user- ........._
 
 ## 4. What is the MD5 hash of the PDF file contained in the packet?
@@ -59,18 +58,43 @@ _submit: 659c............_
 
 ## 5. How many object(s) are contained inside the PDF file?
 
+- Có tất cả 18 Object hoạt động bình thường và 1 Object bị lỗi, do đó kết quả tổng sẽ là 19.
+
+![image](https://user-images.githubusercontent.com/42565778/191435607-82ff6fe4-5736-463d-b2b7-3ecc8fe1d6dc.png)
+
+_submit: 19_
 
 ## 6. How many filtering schemes are used for the object streams?
 
+- Sử dụng các chức năng lọc Filters cơ bản của  peepdf và chúng ta thu được kết quả là 4 filters
+
+![image](https://user-images.githubusercontent.com/42565778/191435848-1396e9f3-7caf-4a41-a796-fb45d6f8a8df.png)
+
+_submit: 4_
 
 ## 7. What is the number of the 'object stream' that might contain malicious JS code?
 
+- Trong quá trình thực hiện thì tôi dò khá nhiều object từ 1 tới 20 để kiểm tra, cho tới object 5 thì thu được kể quả 
+
+![image](https://user-images.githubusercontent.com/42565778/191436126-e47308fb-01e8-4b57-a2ab-3c83c76efc2b.png)
+
+_submit: 5_
 
 ## 8. Analyzing the PDF file. What 'object-streams' contain the JS code responsible for executing the shellcodes? The JS code is divided into two streams. Format: two numbers separated with ','. Put the numbers in ascending order
 
+- Tương tự như câu thứ 7 tôi cũng ngồi dò từng object thì tới 7, 8, 9 thì nhận các kết quả là các payload hoặc là các đoạn mã hóa nào đó ví dụ như này
+
+![image](https://user-images.githubusercontent.com/42565778/191436498-8469e93b-a042-4e97-bc62-1387cd437e6a.png)
+
+- Nhưng mà khả năng phân tích còn kém tôi đã mở hint để tìm kiếm cách làm khác thông minh hơn và tư duy trong thực tế tốt hơn, nhưng dường như chưa tìm được cách nào khác ngoài việc ngồi mò mẫm
+
+_submit: 7..._
 
 ## 9. The JS code responsible for executing the exploit contains shellcodes that drop malicious executable files. What is the full path of malicious executable files after being dropped by the malware on the victim machine?
 
+- Câu 9 do chưa hiểu cách thức thực hiện và khả năng RE còn hạn chế do đó việc tìm kết quả với tôi khá khó khăn và tôi đã bỏ cuộc để thực hiện các thử thách khác.
+
+_submit: c:\WINDOWS\system32\a.exe_
 
 ## 10. The PDF file contains another exploit related to CVE-2010-0188. What is the URL of the malicious executable that the shellcode associated with this exploit drop?
 
@@ -81,4 +105,12 @@ _submit: 659c............_
 _submit: the_real........._
 
 ## 11. How many CVEs are included in the PDF file?
+
+- Dựa vào việc liệt kê các chú thích và các đoạn đoạn JS đã bị ẩn đi mà peepdf đã liệt kê được tôi dự đoán rằng các lỗ hổng đang được khai thác dựa trên object 5. Chính vì thế tôi đã tìm kiếm các thông tin có liên quan đến Object 5 là 7, 9, 10, 11, và phán đoán rằng chắc hẳn các trường thông tin này là các truy vấn được gọi đến để khai thác lỗ hổng. bên cạnh đó là các thông tin theo như Sanbox và virustotal cho ra thì tôi đã đoán lỗ hổng có 4 hoặc 5 hoặc 6. Thử submit đáp án nhé.
+
+![image](https://user-images.githubusercontent.com/42565778/191432020-d4c4fb78-dcaa-417f-905b-af1e81ed50dd.png)
+
+- Có thể đây là cách làm không hữu ích nhưng nó có thể áp dụng 1 số kinh nghiệm nhất định để kiểm tra.
+
+_submit:5_
 
